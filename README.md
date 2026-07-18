@@ -1,5 +1,10 @@
+vscode ➜ /workspaces/urlShortner (main) $ curl -X POST http://localhost:8080/api/v1/urls \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://example.com","customAlias":"Akash"}'
+{"customAlias":"akash","shortCode":"baaaaaa","originalUrl":"https://example.com","shortUrl":"http://localhost:8080/akash/baaaaaa","createdAt":"2026-07-18T07:06:24.589960491Z","expiresAt":"2026-07-19T07:06:24.589960491Z","accessCount":0}vscode ➜ /workspaces/urlShorvscode ➜ /workspaces/urlShortner (main) $ 
 
-1. THE WRITE PATH: POST /api/v1/urls
+
+<!-- 1. THE WRITE PATH: POST /api/v1/urls
 
 User Payload ──► [UrlShortenerController] ──► Passes payload to service layer
                                                      │
@@ -59,7 +64,7 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
                                    │
                                    ▼
                         Returns HTTP 302 Redirect
-                        Cache-Control: no-cache -->
+                        Cache-Control: no-cache 
 
 
 
@@ -93,4 +98,4 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
                  │
                  ▼
          Final Shortcode 
-          (e.g., "baaaaaa")                 
+          (e.g., "baaaaaa")      -->            
