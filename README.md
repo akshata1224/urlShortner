@@ -1,6 +1,6 @@
-<!-- =======================================================================================
+
 1. THE WRITE PATH: POST /api/v1/urls
-=======================================================================================
+
 User Payload ──► [UrlShortenerController] ──► Passes payload to service layer
                                                      │
                                                      ▼
@@ -63,7 +63,7 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
 
 
 
- <!-- uniqueIdGenerator.getAndIncrement() ]
+ uniqueIdGenerator.getAndIncrement() ]
                  │
                  ▼
          Get Numeric ID 
@@ -93,4 +93,4 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
                  │
                  ▼
          Final Shortcode 
-          (e.g., "baaaaaa")                   -->
+          (e.g., "baaaaaa")                 
