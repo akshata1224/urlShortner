@@ -1,0 +1,26 @@
+name: url-shortner
+region: nyc
+services:
+  - name: api
+    github:
+      repo: akshata1224/urlShortner
+      branch: main
+      deploy_on_push: true
+    dockerfile_path: Dockerfile
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    health_check:
+      http_path: /actuator/health
+      initial_delay_seconds: 40
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 5
+    envs:
+      - key: APP_BASE_URL
+        scope: RUN_TIME
+        value: ${APP_URL}
+      - key: JAVA_OPTS
+        scope: RUN_TIME
+        value: "-XX:MaxRAMPercentage=75.0"
