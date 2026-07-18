@@ -107,4 +107,58 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
                  │
                  ▼
          Final Shortcode 
-          (e.g., "baaaaaa")      -->            
+          (e.g., "baaaaaa")      -->    
+
+
+
+          ## API Documentation
+
+### 1. Create a Shortened URL
+Creates a shortened URL with an optional custom alias.
+
+* **URL:** `/api/v1/urls`
+* **Method:** `POST`
+* **Headers:** `Content-Type: application/json`
+
+#### Request Example (cURL):
+```bash
+curl -X POST http://localhost:8080/api/v1/urls \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://example.com","customAlias":"Akash"}'
+```
+
+#### Response Example (200 OK):
+```json
+{
+  "customAlias": "akash",
+  "shortCode": "baaaaaa",
+  "originalUrl": "https://example.com",
+  "shortUrl": "http://localhost:8080/akash/baaaaaa",
+  "createdAt": "2026-07-18T07:06:24.589960491Z",
+  "expiresAt": "2026-07-19T07:06:24.589960491Z",
+  "accessCount": 0
+}
+```
+
+---
+
+### 2. Redirect Shortened URL
+Resolves the short code and performs a 302 HTTP redirect to the original destination URL.
+
+* **URL:** `/akash/{shortCode}` or `/{shortCode}`
+* **Method:** `GET`
+
+#### Request Example (cURL):
+```bash
+curl -i http://localhost:8080/akash/baaaaaa
+```
+
+#### Response Example (302 Found):
+```http
+HTTP/1.1 302 
+Location: https://example.com
+Cache-Control: no-cache
+Content-Length: 0
+Date: Sat, 18 Jul 2026 07:10:20 GMT
+```
+
