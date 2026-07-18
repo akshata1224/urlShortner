@@ -3,10 +3,17 @@ vscode ➜ /workspaces/urlShortner (main) $ curl -X POST http://localhost:8080/a
   -d '{"url":"https://example.com","customAlias":"Akash"}'
 {"customAlias":"akash","shortCode":"baaaaaa","originalUrl":"https://example.com","shortUrl":"http://localhost:8080/akash/baaaaaa","createdAt":"2026-07-18T07:06:24.589960491Z","expiresAt":"2026-07-19T07:06:24.589960491Z","accessCount":0}vscode ➜ /workspaces/urlShorvscode ➜ /workspaces/urlShortner (main) $ 
 
+vscode ➜ /workspaces/urlShortner (main) $ curl -i http://localhost:8080/akash/baaaaaa
+HTTP/1.1 302 
+Location: https://example.com
+Cache-Control: no-cache
+Content-Length: 0
+Date: Sat, 18 Jul 2026 07:10:20 GMT
 
-<!-- 1. THE WRITE PATH: POST /api/v1/urls
 
-User Payload ──► [UrlShortenerController] ──► Passes payload to service layer
+<!-- 1. THE WRITE PATH: POST /api/v1/urls -->
+
+<!-- User Payload ──► [UrlShortenerController] ──► Passes payload to service layer
                                                      │
                                                      ▼
                                         [UrlShortenerService]
@@ -30,12 +37,14 @@ User Payload ──► [UrlShortenerController] ──► Passes payload to serv
                                   Executes Atomic storage.putIfAbsent()
                                                      │
                                                      ▼
-                                  Returns JSON Response payload to user
+                                  Returns JSON Response payload to user -->
 
 
 =======================================================================================
 2. THE READ PATH: GET /{*remainingPath}
 =======================================================================================
+
+<!--
 Browser Click ──► [UrlShortenerController] ──► Catches wildcard trailing segments
                                                      │
                                                      ▼
@@ -64,11 +73,11 @@ Browser Click ──► [UrlShortenerController] ──► Catches wildcard trai
                                    │
                                    ▼
                         Returns HTTP 302 Redirect
-                        Cache-Control: no-cache 
+                        Cache-Control: no-cache  -- >
 
 
 
- uniqueIdGenerator.getAndIncrement() ]
+ <!-- uniqueIdGenerator.getAndIncrement() ]
                  │
                  ▼
          Get Numeric ID 
